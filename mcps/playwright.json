@@ -1,0 +1,42 @@
+{
+  "$schema": "../schemas/entry.schema.json",
+  "id": "playwright",
+  "name": "Playwright",
+  "category": "web",
+  "description": "微软官方浏览器自动化：让助手自己打开页面、点击、截图、看控制台报错。",
+  "tags": [
+    "微软",
+    "浏览器",
+    "调试"
+  ],
+  "author": "microsoft",
+  "repo": "https://github.com/microsoft/playwright-mcp",
+  "featured": false,
+  "install": {
+    "claude": {
+      "mcpServers": {
+        "playwright": {
+          "command": "npx",
+          "args": [
+            "-y",
+            "@playwright/mcp@latest"
+          ]
+        }
+      }
+    },
+    "vscode": {
+      "servers": {
+        "playwright": {
+          "type": "stdio",
+          "command": "npx",
+          "args": [
+            "-y",
+            "@playwright/mcp@latest"
+          ]
+        }
+      }
+    }
+  },
+  "env": [],
+  "notes": "首次运行会下载浏览器内核。默认使用独立 profile，不会读到你的日常浏览器登录态（也就意味着需要登录的页面要手动处理）。"
+}

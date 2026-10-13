@@ -1,0 +1,19 @@
+# dependencies
+node_modules/
+package-lock.json
+pnpm-lock.yaml
+
+# local install output
+.dsh-local/
+*.local.json
+
+# secrets — never commit these
+.env
+.env.*
+!.env.example
+
+# editors / OS
+.DS_Store
+Thumbs.db
+.idea/
+*.swp

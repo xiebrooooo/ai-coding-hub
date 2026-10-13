@@ -1,0 +1,54 @@
+{
+  "$schema": "../schemas/entry.schema.json",
+  "id": "memory",
+  "name": "Memory",
+  "category": "ai",
+  "description": "基于知识图谱的长期记忆，让助手跨会话记住项目约定和架构决策。",
+  "tags": [
+    "官方",
+    "记忆"
+  ],
+  "author": "modelcontextprotocol",
+  "repo": "https://github.com/modelcontextprotocol/servers/tree/main/src/memory",
+  "featured": false,
+  "install": {
+    "claude": {
+      "mcpServers": {
+        "memory": {
+          "command": "npx",
+          "args": [
+            "-y",
+            "@modelcontextprotocol/server-memory"
+          ],
+          "env": {
+            "MEMORY_FILE_PATH": "${MEMORY_FILE_PATH}"
+          }
+        }
+      }
+    },
+    "vscode": {
+      "servers": {
+        "memory": {
+          "type": "stdio",
+          "command": "npx",
+          "args": [
+            "-y",
+            "@modelcontextprotocol/server-memory"
+          ],
+          "env": {
+            "MEMORY_FILE_PATH": "${MEMORY_FILE_PATH}"
+          }
+        }
+      }
+    }
+  },
+  "env": [
+    {
+      "key": "MEMORY_FILE_PATH",
+      "description": "记忆数据存储路径（可选）",
+      "required": false,
+      "example": "/Users/me/.ai-memory.json"
+    }
+  ],
+  "notes": "不设 MEMORY_FILE_PATH 时数据存在进程内存里，重启即丢。要持久化就显式指定路径。"
+}

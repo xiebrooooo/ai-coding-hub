@@ -1,0 +1,41 @@
+{
+  "$schema": "../schemas/entry.schema.json",
+  "id": "sequential-thinking",
+  "name": "Sequential Thinking",
+  "category": "ai",
+  "description": "给助手一个「显式分步推理」的工具，复杂设计问题上的表现会明显更稳。",
+  "tags": [
+    "官方",
+    "推理"
+  ],
+  "author": "modelcontextprotocol",
+  "repo": "https://github.com/modelcontextprotocol/servers/tree/main/src/sequentialthinking",
+  "featured": false,
+  "install": {
+    "claude": {
+      "mcpServers": {
+        "sequential-thinking": {
+          "command": "npx",
+          "args": [
+            "-y",
+            "@modelcontextprotocol/server-sequential-thinking"
+          ]
+        }
+      }
+    },
+    "vscode": {
+      "servers": {
+        "sequential-thinking": {
+          "type": "stdio",
+          "command": "npx",
+          "args": [
+            "-y",
+            "@modelcontextprotocol/server-sequential-thinking"
+          ]
+        }
+      }
+    }
+  },
+  "env": [],
+  "notes": "简单任务上用它反而变慢。适合架构设计、复杂 bug 定位这类需要多轮推演的场景。"
+}

@@ -1,0 +1,47 @@
+{
+  "minimal": [
+    "filesystem",
+    "fetch"
+  ],
+  "frontend": [
+    "filesystem",
+    "fetch",
+    "playwright",
+    "typescript-react",
+    "a11y-baseline",
+    "commit-convention"
+  ],
+  "backend": [
+    "filesystem",
+    "git",
+    "postgres",
+    "go-service",
+    "code-review",
+    "commit-convention"
+  ],
+  "python": [
+    "filesystem",
+    "git",
+    "fetch",
+    "python-fastapi",
+    "code-review",
+    "commit-convention"
+  ],
+  "data": [
+    "filesystem",
+    "postgres",
+    "sequential-thinking",
+    "code-review"
+  ],
+  "fullstack": [
+    "filesystem",
+    "git",
+    "fetch",
+    "github",
+    "playwright",
+    "typescript-react",
+    "python-fastapi",
+    "code-review",
+    "commit-convention"
+  ]
+}

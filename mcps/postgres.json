@@ -1,0 +1,57 @@
+{
+  "$schema": "../schemas/entry.schema.json",
+  "id": "postgres",
+  "name": "PostgreSQL",
+  "category": "data",
+  "description": "让助手直接查询 PostgreSQL，用真实表结构和数据回答「这个字段到底存了什么」。",
+  "tags": [
+    "官方",
+    "数据库",
+    "只读"
+  ],
+  "author": "modelcontextprotocol",
+  "repo": "https://github.com/modelcontextprotocol/servers-archived/tree/main/src/postgres",
+  "featured": false,
+  "install": {
+    "claude": {
+      "mcpServers": {
+        "postgres": {
+          "command": "npx",
+          "args": [
+            "-y",
+            "@modelcontextprotocol/server-postgres",
+            "${DATABASE_URL}"
+          ],
+          "env": {
+            "DATABASE_URL": "${DATABASE_URL}"
+          }
+        }
+      }
+    },
+    "vscode": {
+      "servers": {
+        "postgres": {
+          "type": "stdio",
+          "command": "npx",
+          "args": [
+            "-y",
+            "@modelcontextprotocol/server-postgres",
+            "${DATABASE_URL}"
+          ],
+          "env": {
+            "DATABASE_URL": "${DATABASE_URL}"
+          }
+        }
+      }
+    }
+  },
+  "env": [
+    {
+      "key": "DATABASE_URL",
+      "description": "连接串，建议用只读账号",
+      "required": true,
+      "example": "postgresql://readonly:pass@localhost:5432/mydb"
+    }
+  ],
+  "notes": "⚠️ 该组件已归档，优先考虑社区的 postgres MCP 替代。务必使用只读账号连接，生产库尤其如此。"
+}

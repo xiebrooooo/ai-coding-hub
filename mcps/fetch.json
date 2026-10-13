@@ -1,0 +1,40 @@
+{
+  "$schema": "../schemas/entry.schema.json",
+  "id": "fetch",
+  "name": "Fetch",
+  "category": "web",
+  "description": "抓取网页并转成 Markdown 再喂给模型，比直接塞 HTML 省好几倍 token。",
+  "tags": [
+    "官方",
+    "网络",
+    "必备"
+  ],
+  "author": "modelcontextprotocol",
+  "repo": "https://github.com/modelcontextprotocol/servers/tree/main/src/fetch",
+  "featured": true,
+  "install": {
+    "claude": {
+      "mcpServers": {
+        "fetch": {
+          "command": "uvx",
+          "args": [
+            "mcp-server-fetch"
+          ]
+        }
+      }
+    },
+    "vscode": {
+      "servers": {
+        "fetch": {
+          "type": "stdio",
+          "command": "uvx",
+          "args": [
+            "mcp-server-fetch"
+          ]
+        }
+      }
+    }
+  },
+  "env": [],
+  "notes": "内网环境下可能抓不到外网地址。抓取内容会进入模型上下文，注意别让它抓内部系统页面。"
+}

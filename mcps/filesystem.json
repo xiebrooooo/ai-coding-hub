@@ -1,0 +1,51 @@
+{
+  "$schema": "../schemas/entry.schema.json",
+  "id": "filesystem",
+  "name": "Filesystem",
+  "category": "core",
+  "description": "让 AI 助手安全地读写你指定的本地目录。所有本地编程场景的基础，几乎必装。",
+  "tags": [
+    "官方",
+    "文件",
+    "必备"
+  ],
+  "author": "modelcontextprotocol",
+  "repo": "https://github.com/modelcontextprotocol/servers/tree/main/src/filesystem",
+  "featured": true,
+  "install": {
+    "claude": {
+      "mcpServers": {
+        "filesystem": {
+          "command": "npx",
+          "args": [
+            "-y",
+            "@modelcontextprotocol/server-filesystem",
+            "${WORKSPACE}"
+          ]
+        }
+      }
+    },
+    "vscode": {
+      "servers": {
+        "filesystem": {
+          "type": "stdio",
+          "command": "npx",
+          "args": [
+            "-y",
+            "@modelcontextprotocol/server-filesystem",
+            "${WORKSPACE}"
+          ]
+        }
+      }
+    }
+  },
+  "env": [],
+  "notes": "安装时 --workspace 指定要暴露的目录（默认就是你的项目目录），脚本会把 ${WORKSPACE} 替换成真实路径。只暴露一个项目目录最安全，不要填 HOME 或文件系统根目录；需要多个目录时在 args 里重复追加路径。",
+  "placeholders": [
+    {
+      "key": "WORKSPACE",
+      "description": "允许助手访问的目录绝对路径",
+      "source": "--workspace（默认取 --target）"
+    }
+  ]
+}

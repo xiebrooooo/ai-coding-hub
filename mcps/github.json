@@ -1,0 +1,54 @@
+{
+  "$schema": "../schemas/entry.schema.json",
+  "id": "github",
+  "name": "GitHub",
+  "category": "devops",
+  "description": "直接读 issue、看 PR、搜索代码、创建评论，把 GitHub 操作做成工具调用。",
+  "tags": [
+    "官方",
+    "协作"
+  ],
+  "author": "modelcontextprotocol",
+  "repo": "https://github.com/modelcontextprotocol/servers/tree/main/src/github",
+  "featured": false,
+  "install": {
+    "claude": {
+      "mcpServers": {
+        "github": {
+          "command": "npx",
+          "args": [
+            "-y",
+            "@modelcontextprotocol/server-github"
+          ],
+          "env": {
+            "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
+          }
+        }
+      }
+    },
+    "vscode": {
+      "servers": {
+        "github": {
+          "type": "stdio",
+          "command": "npx",
+          "args": [
+            "-y",
+            "@modelcontextprotocol/server-github"
+          ],
+          "env": {
+            "GITHUB_PERSONAL_ACCESS_TOKEN": "${GITHUB_PERSONAL_ACCESS_TOKEN}"
+          }
+        }
+      }
+    }
+  },
+  "env": [
+    {
+      "key": "GITHUB_PERSONAL_ACCESS_TOKEN",
+      "description": "GitHub PAT，需要 repo 权限",
+      "required": true,
+      "example": "ghp_xxxxxxxx"
+    }
+  ],
+  "notes": "强烈建议用细粒度 token 并只授予必要的只读权限。写权限的 token 不要长期挂着。"
+}

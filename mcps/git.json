@@ -1,0 +1,51 @@
+{
+  "$schema": "../schemas/entry.schema.json",
+  "id": "git",
+  "name": "Git",
+  "category": "core",
+  "description": "让助手自己查看 git 历史、diff、提交记录和分支状态，不用你复制粘贴给它。",
+  "tags": [
+    "官方",
+    "版本控制",
+    "必备"
+  ],
+  "author": "modelcontextprotocol",
+  "repo": "https://github.com/modelcontextprotocol/servers/tree/main/src/git",
+  "featured": true,
+  "install": {
+    "claude": {
+      "mcpServers": {
+        "git": {
+          "command": "uvx",
+          "args": [
+            "mcp-server-git",
+            "--repository",
+            "${WORKSPACE}"
+          ]
+        }
+      }
+    },
+    "vscode": {
+      "servers": {
+        "git": {
+          "type": "stdio",
+          "command": "uvx",
+          "args": [
+            "mcp-server-git",
+            "--repository",
+            "${WORKSPACE}"
+          ]
+        }
+      }
+    }
+  },
+  "env": [],
+  "notes": "需要本机有 uv/uvx。安装时 --workspace 指定仓库路径，脚本会替换 ${WORKSPACE}。助手能读到 git 历史中的一切，包括误提交过的密钥——先确认仓库里没有脏数据。",
+  "placeholders": [
+    {
+      "key": "WORKSPACE",
+      "description": "git 仓库的绝对路径",
+      "source": "--workspace（默认取 --target）"
+    }
+  ]
+}
