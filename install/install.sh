@@ -29,8 +29,13 @@ if [ -z "$ROOT" ]; then
   command -v tar  >/dev/null 2>&1 || die "需要 tar 解压。"
   info "正在获取 ai-coding-hub ($BRANCH)..."
   TMPDIR_AH="$(mktemp -d)"
-  curl -fsSL "https://github.com/$REPO_SLUG/archive/refs/heads/$BRANCH.tar.gz" \
-    | tar -xz -C "$TMPDIR_AH" || die "下载失败。仓库地址: https://github.com/$REPO_SLUG"
+  BASE="https://github.com/$REPO_SLUG/archive/refs/heads/$BRANCH.tar.gz"
+  # 直连失败时回退到 ghproxy 镜像（大陆网络 raw.githubusercontent 不可达）
+  MIRROR="https://ghproxy.net/https://github.com/$REPO_SLUG/archive/refs/heads/$BRANCH.tar.gz"
+  if ! curl -fsSL "$BASE" | tar -xz -C "$TMPDIR_AH" 2>/dev/null; then
+    info "直连失败，改用 ghproxy 镜像重试..."
+    curl -fsSL "$MIRROR" | tar -xz -C "$TMPDIR_AH" || die "下载失败。仓库地址: https://github.com/$REPO_SLUG"
+  fi
   ROOT="$(find "$TMPDIR_AH" -maxdepth 1 -type d -name '*ai-coding-hub*' | head -n 1)"
   [ -n "$ROOT" ] && [ -d "$ROOT/mcps" ] || die "解压后没找到仓库内容。"
 fi

@@ -26,14 +26,24 @@ MCP Servers · Rules · Skills — installed with a single command
 
 ## ⚡ Install
 
+**Option 1: clone and run** — recommended, works on any network
+
 ```bash
-# macOS / Linux
-curl -fsSL https://raw.githubusercontent.com/xiebrooooo/ai-coding-hub/main/install/install.sh | bash -s -- --preset frontend
+git clone --depth 1 https://github.com/xiebrooooo/ai-coding-hub.git
+cd ai-coding-hub && ./install/install.sh --preset frontend
 ```
 
+**Option 2: one-liner** — via the ghproxy mirror (`raw.githubusercontent.com` is unreachable from mainland China)
+
+```bash
+curl -fsSL https://ghproxy.net/https://raw.githubusercontent.com/xiebrooooo/ai-coding-hub/main/install/install.sh | bash -s -- --preset frontend
+```
+
+On Windows (PowerShell 7+) swap `install.sh` for `install.ps1`.
+For the one-liner:
+
 ```powershell
-# Windows (PowerShell 7+)
-iwr -useb https://raw.githubusercontent.com/xiebrooooo/ai-coding-hub/main/install/install.ps1 | iex
+iwr -useb https://ghproxy.net/https://raw.githubusercontent.com/xiebrooooo/ai-coding-hub/main/install/install.ps1 | iex
 ```
 
 See what it would touch first — the script never writes your config:

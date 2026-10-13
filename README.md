@@ -27,19 +27,28 @@ MCP Servers · Rules · Skills —— 一条命令，全套就位
 
 **这个仓库把它们收进一个地方，用统一的格式描述，然后一条命令装进你的客户端。**
 
-## ⚡ 一行安装
+## ⚡ 安装
+
+**方式一：克隆后运行** —— 推荐，任何网络环境都能用
 
 ```bash
-# macOS / Linux
-curl -fsSL https://raw.githubusercontent.com/xiebrooooo/ai-coding-hub/main/install/install.sh | bash -s -- --preset frontend
+git clone --depth 1 https://github.com/xiebrooooo/ai-coding-hub.git
+cd ai-coding-hub && ./install/install.sh --preset frontend
 ```
+
+**方式二：一行搞定** —— 走 ghproxy 镜像（`raw.githubusercontent.com` 在中国大陆不可达）
+
+```bash
+curl -fsSL https://ghproxy.net/https://raw.githubusercontent.com/xiebrooooo/ai-coding-hub/main/install/install.sh | bash -s -- --preset frontend
+```
+
+Windows（PowerShell 7+）把 `install.sh` 换成 `install.ps1`，一行版用：
 
 ```powershell
-# Windows (PowerShell 7+)
-iwr -useb https://raw.githubusercontent.com/xiebrooooo/ai-coding-hub/main/install/install.ps1 | iex
+iwr -useb https://ghproxy.net/https://raw.githubusercontent.com/xiebrooooo/ai-coding-hub/main/install/install.ps1 | iex
 ```
 
-**先看会改哪些文件**（首次强烈建议，脚本不会动你的配置）：
+**先看会改哪些文件** —— 首次强烈建议，脚本不会动你的配置
 
 ```bash
 ./install/install.sh --preset frontend --dry-run

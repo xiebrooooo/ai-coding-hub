@@ -35,11 +35,18 @@ if (-not $root) {
     $tmp = Join-Path ([IO.Path]::GetTempPath()) ('aih-' + [Guid]::NewGuid().ToString('N'))
     New-Item -ItemType Directory -Path $tmp -Force | Out-Null
     $url = "https://github.com/$repoSlug/archive/refs/heads/$branch.tar.gz"
+    $mirror = "https://ghproxy.net/https://github.com/$repoSlug/archive/refs/heads/$branch.tar.gz"
     $zip = Join-Path $tmp 'src.tar.gz'
     try {
         Invoke-WebRequest -Uri $url -OutFile $zip -UseBasicParsing
     } catch {
-        Die "下载失败。仓库地址: $url"
+        # 直连失败时回退到 ghproxy 镜像
+        Write-Info '直连失败，改用 ghproxy 镜像重试...'
+        try {
+            Invoke-WebRequest -Uri $mirror -OutFile $zip -UseBasicParsing
+        } catch {
+            Die "下载失败。仓库地址: $url"
+        }
     }
     & tar -xzf $zip -C $tmp
     $root = Get-ChildItem -LiteralPath $tmp -Directory |
